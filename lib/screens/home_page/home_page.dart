@@ -64,111 +64,116 @@ class _HomePageState extends State<HomePage>
     }
     return Scaffold(
       backgroundColor: Color(0xFFF6EADB),
-      body: Scrollbar(
-        controller: _scrollController,
-        thumbVisibility: true,
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color(0xFFF3E3C3),
-              image: DecorationImage(
-                image: AssetImage(AppAssets.background,),
-                opacity: 0.85,
-                fit: BoxFit.cover,
-                 filterQuality: FilterQuality.low,
-                colorFilter: ColorFilter.mode(
-                  Color(0xFFF7F4EA),
-                  BlendMode.multiply,
-                ),
-              ),
-            ),
-            child: Column(
-              spacing: 50,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Envolop(),
-                Stack(
-                  alignment: Alignment.center,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            AppAssets.background,
+            fit: BoxFit.cover,
+            filterQuality: FilterQuality.low,
+            cacheWidth: 1080, // decode small for phones
+            errorBuilder: (c, e, s) {
+              debugPrint('BG error: $e');
+              return const ColoredBox(color: Color(0xFFF3E3C3));
+            },
+          ),
+          const ColoredBox(color: Color(0x33F7F4EA)),
+          Scrollbar(
+            controller: _scrollController,
+            thumbVisibility: true,
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  spacing: 50,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "&",
-                      style: GoogleFonts.theNautigal(
-                        fontSize: 160,
-                        fontStyle: FontStyle.italic,
-                        color: const Color(0xFF8A7A6A).withOpacity(0.25),
-                      ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
+                    Envolop(),
+                    Stack(
+                      alignment: Alignment.center,
                       children: [
                         Text(
-                          "Gokul",
-                          style: GoogleFonts.playfairDisplay(
-                            fontSize: 64,
-                            color: AppColors.fontColor,
+                          "&",
+                          style: GoogleFonts.theNautigal(
+                            fontSize: 160,
+                            fontStyle: FontStyle.italic,
+                            color: const Color(
+                              0xFF8A7A6A,
+                            ).withValues(alpha: 0.25),
                           ),
                         ),
-                        Text(
-                          "Vrinda",
-                          style: GoogleFonts.playfairDisplay(
-                            fontSize: 64,
-                            color: AppColors.fontColor,
-                          ),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Gokul",
+                              style: GoogleFonts.playfairDisplay(
+                                fontSize: 64,
+                                color: AppColors.fontColor,
+                              ),
+                            ),
+                            Text(
+                              "Vrinda",
+                              style: GoogleFonts.playfairDisplay(
+                                fontSize: 64,
+                                color: AppColors.fontColor,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
+                    ),
+                    // Example usage:
+                    CeremonyInfo(),
+                    CustomHeading(text: "Photo Gallery"),
+                    PhotoGallery(),
+                    ReceptionInfo(),
+                    SizedBox.shrink(),
+                    const VenueLocationSection(),
+                    SizedBox.shrink(),
+                    GuestbookSection(),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 14,
+                      ),
+                      decoration: BoxDecoration(
+                        // 🚀 Soft dark/black gradient overlay for crystal-clear text readability
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.landingCard.withAlpha(0),
+                            AppColors.landingCard.withAlpha(200),
+                            AppColors.landingCard.withAlpha(0),
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        "Your presence would be the greatest gift we could receive!",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.tinos(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.landingDeepRed,
+                        ),
+                      ),
+                    ),
+                    WishesListSection(),
+                    SizedBox.shrink(),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: ColnrowWordmark(fontSize: 15),
                     ),
                   ],
                 ),
-                // Example usage:
-                CeremonyInfo(),
-                CustomHeading(text: "Photo Gallery"),
-                PhotoGallery(),
-                ReceptionInfo(),
-                SizedBox.shrink(),
-                const VenueLocationSection(),
-                SizedBox.shrink(),
-                GuestbookSection(),
-
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 14,
-                  ),
-                  decoration: BoxDecoration(
-                    // 🚀 Soft dark/black gradient overlay for crystal-clear text readability
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.landingCard.withAlpha(0),
-                        AppColors.landingCard.withAlpha(200),
-                        AppColors.landingCard.withAlpha(0),
-                      ],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    "Your presence would be the greatest gift we could receive!",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.tinos(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.landingDeepRed,
-                    ),
-                  ),
-                ),
-                WishesListSection(),
-                SizedBox.shrink(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: ColnrowWordmark(fontSize: 15),
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
       floatingActionButton: MusicButton(),
     );

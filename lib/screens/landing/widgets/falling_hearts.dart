@@ -115,7 +115,7 @@ class _HeartsPainter extends CustomPainter {
       final x =
           h.x * size.width + sin(elapsed * h.swaySpeed + h.phase) * h.sway;
 
-      paint.color = h.color.withOpacity(h.opacity);
+      paint.color = h.color.withValues(alpha: h.opacity);
       canvas.save();
       canvas.translate(x, y);
       canvas.rotate(h.rotation + elapsed * h.rotSpeed);
