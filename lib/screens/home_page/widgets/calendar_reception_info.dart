@@ -65,7 +65,7 @@ class CalendarReceptionInfo extends StatelessWidget {
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           letterSpacing: 1.1,
-                          color: maroon.withOpacity(0.55),
+                          color: maroon.withValues(alpha: 0.55),
                         ),
                       ),
                     ),

@@ -156,7 +156,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
                         icon: Icons.chevron_left_rounded,
                         onTap: () => _manualNavigate(-1),
                       ),
-               
+
                 ScreenHelper.isMobile(context)
                     ? const SizedBox.shrink()
                     : _buildArrow(
@@ -243,7 +243,6 @@ class _PhotoGalleryState extends State<PhotoGallery> {
       );
     }
 
-    
     return RepaintBoundary(
       child: Transform.translate(
         offset: Offset(dx, 0),
@@ -269,7 +268,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Material(
-          color: Colors.black.withOpacity(0.45),
+          color: Colors.black.withValues(alpha: 0.45),
           shape: const CircleBorder(),
           child: InkWell(
             customBorder: const CircleBorder(),
@@ -305,13 +304,13 @@ class _PhotoCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.22),
+            color: Colors.black.withValues(alpha: 0.22),
             blurRadius: 28,
             spreadRadius: 1,
             offset: const Offset(0, 14),
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.10),
+            color: Colors.black.withValues(alpha: 0.10),
             blurRadius: 8,
             offset: const Offset(0, 3),
           ),
