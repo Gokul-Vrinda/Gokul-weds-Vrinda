@@ -12,7 +12,7 @@ class AppAssets {
   static const String rightLandingFlower =
       '${_basePath}right_landing_element.png';
   static const String flower = '${_basePath}Flower.webp';
-  static const String background = '${_basePath}BG_2.webp';
+  static const String background = '${_basePath}bg_2_resized.webp';
   static const String envelopeBack = '${_basePath}letter_cover_back.webp';
   static const String envelopeFront = '${_basePath}letter_cover_front.webp';
   static const String poster = '${_basePath}Poster.webp';

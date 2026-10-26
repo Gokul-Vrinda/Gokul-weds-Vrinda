@@ -198,6 +198,7 @@ class _ReceptionInfoState extends State<ReceptionInfo> {
               ),
 
               CalendarReceptionInfo(),
+              SizedBox(height: 50),
             ],
           ),
         ),
