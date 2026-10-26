@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:gokul_weds_vrinda/const/app_colors.dart'; // adjust path to your ScreenHelper
 import 'package:gokul_weds_vrinda/const/screen_helper.dart';
@@ -13,9 +14,12 @@ class CeremonyInfo extends StatelessWidget {
 
     // Web: 700 (as before). Tab: 700 or a bit smaller on narrow tablets.
     // Mobile: full width with a small side margin.
+    // final double cardWidth = isMobile
+    //     ? screenW - 32
+    //     : (screenW - 80).clamp(0, 700).toDouble();
     final double cardWidth = isMobile
-        ? screenW - 32
-        : (screenW - 80).clamp(0, 700).toDouble();
+        ? math.max(0.0, screenW - 32)
+        : math.min(700.0, math.max(0.0, screenW - 80));
 
     final double nameSize = isMobile ? 16 : 18;
     final double smallSize = isMobile ? 12 : 13;
@@ -68,39 +72,39 @@ class CeremonyInfo extends StatelessWidget {
 
               // Parents: stacked on mobile, side by side on tab / web
               if (isMobile)
-                // Column(
-                //   mainAxisSize: MainAxisSize.min,
-                //   children: [
-                //     sasiFamily,
-                //     Padding(
-                //       padding: const EdgeInsets.symmetric(vertical: 16),
-                //       child: SizedBox(
-                //         width: 50,
-                //         child: Divider(
-                //           height: 1,
-                //           color: AppColors.landingCard.withValues(alpha: 0.6),
-                //         ),
-                //       ),
-                //     ),
-                //     sajeevanFamily,
-                //   ],
-                // )
-                Row(
-                  spacing: 10,
+                Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Flexible(child: sasiFamily),
-                    SizedBox(
-                      height: 50,
-                      child: VerticalDivider(
-                        width: 40,
-                        color: AppColors.landingCard.withValues(alpha: 0.6),
+                    sasiFamily,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: SizedBox(
+                        width: 50,
+                        child: Divider(
+                          height: 1,
+                          color: AppColors.landingCard.withValues(alpha: 0.6),
+                        ),
                       ),
                     ),
-                    Flexible(child: sajeevanFamily),
+                    sajeevanFamily,
                   ],
                 )
+              // Row(
+              //   spacing: 10,
+              //   mainAxisSize: MainAxisSize.min,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Flexible(child: sasiFamily),
+              //     SizedBox(
+              //       height: 50,
+              //       child: VerticalDivider(
+              //         width: 40,
+              //         color: AppColors.landingCard.withValues(alpha: 0.6),
+              //       ),
+              //     ),
+              //     Flexible(child: sajeevanFamily),
+              //   ],
+              // )
               else
                 Row(
                   spacing: 10,
